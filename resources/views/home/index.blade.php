@@ -11,3 +11,5 @@
         @endforeach
     </p>
 </div>
+<hr>
+@include('common.button',['color'=>'cyan','text'=>'отправить'])
