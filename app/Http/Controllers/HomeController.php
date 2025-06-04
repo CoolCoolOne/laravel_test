@@ -18,4 +18,9 @@ class HomeController extends Controller
          ->with ('surname', 'Tro')
          ->with ('deals', ['books','guitar','gymnastics']);
     }
+
+    public function layout(){
+
+         return view('welcome');
+    }
 }
