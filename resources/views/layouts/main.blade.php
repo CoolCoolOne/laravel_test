@@ -49,7 +49,7 @@
     </div>
 </nav>
 
-<body>
+<body class="bg-dark">
 
     <main class="main mt-3">
         <div class="container">
