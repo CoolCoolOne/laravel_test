@@ -38,21 +38,20 @@ class UserController extends Controller
 
     public function loginAuth(Request $request)
     {
-        dd($request->all());
 
-        // $credentials = $request->validate([
-        //     'email' => ['required', 'email'],
-        //     'password' => ['required',],
-        // ]);
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required',],
+        ]);
 
-        // if (Auth::attempt($credentials, $request->boolean('remember'))) {
-        //     $request->session()->regenerate();
-        //     return redirect()->intended('dashboard')->with('success', 'Welcome, ' . Auth::user()->name . '!');
-        // }
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+            $request->session()->regenerate();
+            return redirect()->intended('dashboard')->with('success', 'Добро пожаловайт, ' . Auth::user()->name . '!');
+        }
 
-        // return back()->withErrors([
-        //     'email' => 'Wrong login or password',
-        // ]);
+        return back()->withErrors([
+            'email' => 'Неверный ящик или пароЛ',
+        ]);
     }
 
     public function logout()
