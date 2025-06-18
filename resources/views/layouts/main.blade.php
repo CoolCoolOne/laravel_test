@@ -28,8 +28,25 @@
 
                     @if (Route::has('login'))
                         @auth
+
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Все пользователи</a>
+                                <a class="nav-link" href="{{ route('dashboard') }}">Доска</a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}">Разлогиниться</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-info" href="#">
+                                    {{ auth()->user()->name }}
+                                    @if (auth()->user()->hasVerifiedEmail())
+                                        [подтверждён]
+                                    @else
+                                        [не подтверждён]
+                                    @endif
+                                </a>
                             </li>
 
                         @endauth
@@ -72,7 +89,7 @@
 
             @if (session('success'))
                 <div class="alert alert-success">
-                    {{session('success')}}
+                    {{ session('success') }}
                 </div>
             @endif
 
