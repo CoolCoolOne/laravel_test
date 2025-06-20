@@ -37,7 +37,9 @@
                     <button type="submit" class="btn  btn-light">
                         Авторизация!
                     </button>
+                    <a href="{{ route('password.request')}}" class="ms-3 text-secondary">Забыли пароль?</a>
                 </div>
+
 
 
             </form>
