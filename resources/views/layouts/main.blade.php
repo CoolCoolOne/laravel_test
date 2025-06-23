@@ -26,7 +26,7 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Главная</a>
                     </li>
 
-                    @if (Route::has('login'))
+
                         @auth
 
                             <li class="nav-item">
@@ -38,16 +38,7 @@
                                 <a class="nav-link" href="{{ route('logout') }}">Разлогиниться</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-info" href="#">
-                                    {{ auth()->user()->name }}
-                                    @if (auth()->user()->hasVerifiedEmail())
-                                        [подтверждён]
-                                    @else
-                                        [не подтверждён]
-                                    @endif
-                                </a>
-                            </li>
+
 
                         @endauth
                         @guest
@@ -58,12 +49,21 @@
                                 <a class="nav-link" href="{{ route('login') }}">Авторизация</a>
                             </li>
                         @endguest
-                    @endif
 
                 </ul>
+                @auth
                 <span class="navbar-text">
-                    Это версия вторая! Год спустя! Надёжнич! Адаптивнич..
+                        <a class="nav-link text-info" href="#">
+                            {{ auth()->user()->name }}
+                            @if (auth()->user()->hasVerifiedEmail())
+                                <img class="rounded-pill" src="/images/avatars/{{ auth()->user()->avatar }}"
+                                    alt="фото_профиля" width="50px">
+                            @else
+                                [не подтверждён]
+                            @endif
+                        </a>
                 </span>
+                @endauth
             </div>
         </div>
     </nav>
