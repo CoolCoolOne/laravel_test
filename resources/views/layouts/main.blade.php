@@ -52,17 +52,17 @@
 
                 </ul>
                 @auth
-                <span class="navbar-text">
-                        <a class="nav-link text-info" href="#">
-                            {{ auth()->user()->name }}
+                <a class="text-decoration-none navbar-text bg-success rounded rounded-3 opacity-25" href="#">
+                        <div class="nav-link text-dark">
+                            <b>{{ auth()->user()->name }}</b>
                             @if (auth()->user()->hasVerifiedEmail())
                                 <img class="rounded-pill" src="/images/avatars/{{ auth()->user()->avatar }}"
                                     alt="фото_профиля" width="50px">
                             @else
                                 [не подтверждён]
                             @endif
-                        </a>
-                </span>
+                        </div>
+                </a>
                 @endauth
             </div>
         </div>
