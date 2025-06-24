@@ -56,7 +56,7 @@
                         <div class="nav-link text-dark">
                             <b>{{ auth()->user()->name }}</b>
                             @if (auth()->user()->hasVerifiedEmail())
-                                <img class="rounded-pill" src="/images/avatars/{{ auth()->user()->avatar }}"
+                                <img class="rounded-pill" src="storage/{{ auth()->user()->avatar }}"
                                     alt="фото_профиля" width="50px">
                             @else
                                 [не подтверждён]

@@ -25,10 +25,26 @@ class UserController extends Controller
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed'],
-            'avatar' => ['nullable','image', 'mimes:jpeg,jpg,png'],
+            'avatar' => ['nullable', 'image', 'mimes:jpeg,jpg,png'],
         ]);
 
-        $user = User::create($request->all());
+
+        if ($request->hasFile('avatar')) {
+            $avaName = $request->avatar->store('images/avatars', 'public');
+        } else {
+            $avaName = 'images/avatars/default_avatar.jpg';
+        }
+
+        // $user = User::create($request->all());
+
+       $user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => $request['password'],
+            'avatar' => $avaName,
+        ]);
+
+
         event(new Registered($user));
         Auth::login($user);
 
