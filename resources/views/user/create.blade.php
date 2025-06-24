@@ -8,7 +8,7 @@
             <h1 class="mb-5">Регистрация</h1>
 
 
-            <form action="{{ route('user.store') }}" method="post">
+            <form enctype="multipart/form-data" action="{{ route('user.store') }}" method="post">
 
                 @csrf
 
@@ -49,8 +49,14 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Загрузите аватар [необяз]</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <label for="avatar" class="form-label">Загрузите аватар [необяз]</label>
+                    <input name='avatar' 
+                    class="form-control @error('avatar') is-invalid @enderror" 
+                    type="file" id="avatar">
+
+                    @error('avatar')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mt-5 text-center">

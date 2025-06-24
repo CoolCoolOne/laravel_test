@@ -25,6 +25,7 @@ class UserController extends Controller
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed'],
+            'avatar' => ['nullable','image', 'mimes:jpeg,jpg,png'],
         ]);
 
         $user = User::create($request->all());
