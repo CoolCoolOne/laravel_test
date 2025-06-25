@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContentController;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\UserController;
@@ -13,7 +14,7 @@ Route::get("/", [
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get("dashboard", [UserController::class, 'dashboard'])->name('dashboard');
+    Route::get("userlist", [ContentController::class, 'userlist'])->name('userlist');
 
 });
 

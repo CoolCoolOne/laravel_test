@@ -30,7 +30,7 @@
                         @auth
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('dashboard') }}">Доска</a>
+                                <a class="nav-link" href="{{ route('userlist') }}">Все пользователи</a>
                             </li>
 
 

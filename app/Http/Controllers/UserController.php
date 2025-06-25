@@ -66,7 +66,7 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard')->with('success', 'Добро пожаловайт, ' . Auth::user()->name . '!');
+            return redirect()->intended('userlist')->with('success', 'Добро пожаловайт, ' . Auth::user()->name . '!');
         }
 
         return back()->withErrors([
@@ -81,10 +81,6 @@ class UserController extends Controller
         return redirect()->route("login");
     }
 
-    public function dashboard()
-    {
-        return view("user.dashboard");
-    }
 
     public function forgotPasswordStore(Request $request)
     {
