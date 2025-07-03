@@ -30,7 +30,10 @@
                         @auth
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('userlist') }}">Все пользователи</a>
+                                <a class="nav-link" href="{{ route('userlist') }}">Пользователи</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('all_posts') }}">Публикации</a>
                             </li>
 
 

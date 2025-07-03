@@ -4,6 +4,7 @@ use App\Http\Controllers\ContentController;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", [
@@ -15,6 +16,13 @@ Route::get("/", [
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get("userlist", [ContentController::class, 'userlist'])->name('userlist');
+
+    Route::get('/posts', [PostController::class, 'index'])->name('all_posts'); // Cписoк всех постов
+    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create'); // Форма создания 
+    Route::post('/posts', [PostController::class, 'store'])->name('posts.store'); // Сохранение нового 
+    Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit'); // Форма редактирования
+    Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update'); // Обновление
+    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy'); // Удаление 
 
 });
 
