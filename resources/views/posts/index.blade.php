@@ -5,6 +5,7 @@
 @section('content')
 
 
+
     <div class="d-flex justify-content-around flex-wrap mt-5">
 
         @foreach ($posts as $post)
@@ -30,6 +31,7 @@
 
     </div>
     {{ $posts->links('pagination::bootstrap-5') }} <!-- Пагинация -->
+    
 
 
 

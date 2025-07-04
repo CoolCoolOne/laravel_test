@@ -8,14 +8,16 @@
             <h1 class="mb-5">Создание публикации</h1>
 
 
-            <form action="{{ route('store.posts') }}" method="post">
+            <form action="{{ route('posts.store') }}" method="post">
 
                 @csrf
+
+                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
                 <div class="mb-3">
                     <label for="title" class="form-label">Заголовок</label>
                     <input name='title' type="title" class="form-control @error('title') is-invalid @enderror"
-                        id="title" placeholder="логин" value="{{ old('Заголовок') }}">
+                        id="title" placeholder="Не более 100 символов" value="{{ old('title') }}">
 
                     @error('title')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -23,35 +25,34 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="content" class="form-label">Текст статьи</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="content" class="form-label">Текст статьи (>50 символов)</label>
+                    <textarea name='content' class="form-control @error('content') is-invalid @enderror" id="content"
+                        placeholder="Содержание" id="content" rows="5">{{ old('content') }}</textarea>
+
+
+                    @error('content')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
-                <label for="exampleColorInput" class="form-label">Выбрать цвет!</label>
-                <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c"
-                    title="Choose your color">
-
-
-
-
                 <div class="mb-3">
-                    <label for="password" class="form-label">Пароль</label>
-                    <input name='password' type="password" class="form-control" id="password" placeholder="пароль">
+                    <label for="color" class="form-label">Выбрать цвет!</label>
+                    <input type="color" class="form-control form-control-color" id="color" value="#6C757D"
+                        title="Выбрать цвет фона">
                 </div>
 
                 <div class="mb-3 form-check">
-                    <input name="remember" class="form-check-input" type="checkbox" id="remember">
-                    <label class="form-check-label" for="remember">
-                        Запомнить меня!
+                    <input name="personal" class="form-check-input" type="checkbox" id="personal">
+                    <label class="form-check-label" for="personal">
+                        Скрытая (личная) публикация
                     </label>
                 </div>
 
 
                 <div class="mt-5 text-center">
                     <button type="submit" class="btn  btn-light">
-                        Авторизация!
+                        Опубликовать
                     </button>
-                    <a href="{{ route('password.request') }}" class="ms-3 text-secondary">Забыли пароль?</a>
                 </div>
 
 

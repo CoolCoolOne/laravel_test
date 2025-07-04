@@ -29,14 +29,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required|max:100',
-            'content' => 'required',
+            'content' => 'required|min:50',
         ]);
 
         Post::create($request->all()); // Создаем пост
 
-        return redirect()->route('posts.index')->with('success', 'Пост успешно создан!');
+        return redirect()->route('all_posts')->with('success', 'Пост успешно создан!');
     }
 
     /**
