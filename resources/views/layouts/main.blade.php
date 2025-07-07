@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'Ларчик аутентефикация')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>@yield('title', 'RoomNet0.ru')</title>
+    <link href="{{ asset('./css/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('./css/main.css') }}">
 
 </head>
 
-<body class="bg-dark text-light">
+<body class="bg-dark text-light custom_main_bg">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -27,45 +27,46 @@
                     </li>
 
 
-                        @auth
+                    @auth
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('userlist') }}">Пользователи</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('all_posts') }}">Публикации</a>
-                            </li>
-
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}">Разлогиниться</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('userlist') }}">Пользователи</a>
+                        </li>
+                        <li class="nav-item me-5">
+                            <a class="nav-link" href="{{ route('all_posts') }}">Публикации</a>
+                        </li>
 
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}">Разлогиниться</a>
+                        </li>
 
-                        @endauth
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">Регистрация</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Авторизация</a>
-                            </li>
-                        @endguest
+
+
+                    @endauth
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">Регистрация</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Авторизация</a>
+                        </li>
+                    @endguest
 
                 </ul>
                 @auth
-                <a class="text-decoration-none navbar-text bg-success rounded rounded-3 opacity-25" href="#">
+                    <a class="text-decoration-none navbar-text bg-success rounded rounded-3 opacity-25"
+                        href="{{ route('profile') }}">
                         <div class="nav-link text-dark">
                             <b>{{ auth()->user()->name }}</b>
                             @if (auth()->user()->hasVerifiedEmail())
-                                <img class="rounded-pill" src="storage/{{ auth()->user()->avatar }}"
-                                    alt="фото_профиля" width="50px">
+                                <img class="rounded-pill" src="storage/{{ auth()->user()->avatar }}" alt="фото_профиля"
+                                    width="50px">
                             @else
                                 [не подтверждён]
                             @endif
                         </div>
-                </a>
+                    </a>
                 @endauth
             </div>
         </div>
@@ -106,7 +107,7 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    <script src="{{ asset('./js/bootstrap.bundle.min.js') }}"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 </body>

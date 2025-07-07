@@ -16,4 +16,8 @@ class ContentController extends Controller
         return view('content.userlist', compact('users'));
 
     }
+    public function profile()
+    {
+        return view('content.profile');
+    }
 }

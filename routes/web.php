@@ -16,6 +16,7 @@ Route::get("/", [
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get("userlist", [ContentController::class, 'userlist'])->name('userlist');
+    Route::get("profile", [ContentController::class, 'profile'])->name('profile');
 
     Route::get('/posts', [PostController::class, 'index'])->name('all_posts'); // Cписoк всех постов
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create'); // Форма создания 
