@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+
 class PostController extends Controller
 {
     /**
@@ -14,6 +15,15 @@ class PostController extends Controller
     {
         $posts = Post::latest()->paginate(6); // Получаем посты с пагинацией
         return view('posts.index', compact('posts'));
+    }
+
+    public function manage()
+    {
+        $user_id = auth()->user()->id;
+
+
+        $posts = Post::latest()->where('user_id',$user_id)->paginate(6); // Получаем посты с пагинацией
+        return view('posts.manage', compact('posts'));
     }
 
     /**
@@ -30,12 +40,21 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
+
         $request->validate([
             'title' => 'required|max:100',
             'content' => 'required|min:50',
         ]);
 
-        Post::create($request->all()); // Создаем пост
+        $user_id = auth()->user()->id;
+
+
+        Post::create([
+            'title' => $request['title'],
+            'content' => $request['content'],
+            'user_id' => $user_id,
+        ]);
+
 
         return redirect()->route('all_posts')->with('success', 'Пост успешно создан!');
     }

@@ -11,8 +11,8 @@
             <li class="nav-item">
                 <a class="nav-link active alert-success alert-link rounded" aria-current="page" href="{{route('posts.create')}}">Создать пост</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1">Мои посты</a>
+            <li class="nav-item mt-3">
+                <a class="nav-link active alert-success alert-link rounded" href="{{route('posts.manage')}}">Мои посты</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1">Загрузить фото</a>

@@ -11,8 +11,9 @@ class ContentController extends Controller
 
     public function userlist()
     {
-        $users = User::all();
+        $users = User::all("id","name","email_verified_at","avatar" );
 
+        // dd($users);
         return view('content.userlist', compact('users'));
 
     }

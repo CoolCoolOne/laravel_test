@@ -12,7 +12,7 @@
 
                 @csrf
 
-                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                {{-- <input type="hidden" name="user_id" value="{{ auth()->user()->id }}"> --}}
 
                 <div class="mb-3">
                     <label for="title" class="form-label">Заголовок</label>

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 
 class Post extends Model
 {
@@ -12,6 +14,8 @@ class Post extends Model
      * The attributes that are mass assignable.
      *
      * @var list<string>
+     * 
+     * 
      */
     protected $fillable = [
         'title',
@@ -25,4 +29,19 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function isPersonal()
+    {
+        return $this->personal ? 'Личное':'Для всех';
+    }
+
+    public function getShortContent()
+    {
+        $shortContent = Str::limit($this->content, 15);
+        return $shortContent;
+    }
+
+    
+
+
 }
