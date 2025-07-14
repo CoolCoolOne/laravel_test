@@ -23,7 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create'); // Форма создания 
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store'); // Сохранение нового 
     Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit'); // Форма редактирования
-    Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update'); // Обновление
+    Route::post('/posts/{post}', [PostController::class, 'update'])->name('posts.update'); // Обновление
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy'); // Удаление 
 
 });

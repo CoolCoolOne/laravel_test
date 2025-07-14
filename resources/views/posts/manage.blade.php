@@ -23,10 +23,10 @@
                     <td>{{ $post->isPersonal() }}</td>
                     <td>
                         <a href="{{ route('posts.edit', $post) }}" class="btn btn-warning">Редактировать</a>
-                        <form action="{{ route('posts.destroy', $post) }}" method="POST" style="display:inline-block">
+                        <form action="{{ route('posts.destroy', $post) }}" method="post" style="display:inline-block">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger" onclick="return confirm('Удалить пост?')">Удалить</button>
+                            <button class="btn btn-danger" onclick="return confirm('Удалить пост {{$post->title}}?')">Удалить</button>
                         </form>
                     </td>
                 </tr>

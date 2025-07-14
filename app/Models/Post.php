@@ -41,6 +41,10 @@ class Post extends Model
         return $shortContent;
     }
 
+    public function isAuthor() {
+        return $this->user->id === auth()->user()->id;
+    }
+
     
 
 

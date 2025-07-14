@@ -80,14 +80,22 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        // обновлять можно только свои посты
+        if ( ! $post->isAuthor()) {
+            abort(404);
+        }
+
+
         $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
+            'title' => 'required|max:100',
+            'content' => 'required|min:50',
         ]);
 
-        $post->update($request->all()); // Обновляем пост
+        $post->update($request->all());
 
-        return redirect()->route('posts.index')->with('success', 'Пост успешно обновлен!');
+
+        return redirect()->route('posts.manage')->with('success', 'Пост успешно обновлён!');
+
     }
 
     /**
@@ -95,8 +103,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->delete(); // Удаляем пост
+        $post->delete(); 
 
-        return redirect()->route('posts.index')->with('success', 'Пост успешно удален!');
+        return redirect()->route('posts.manage')->with('success', 'Пост успешно удален!');
     }
 }
