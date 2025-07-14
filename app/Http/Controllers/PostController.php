@@ -52,6 +52,7 @@ class PostController extends Controller
         Post::create([
             'title' => $request['title'],
             'content' => $request['content'],
+            'color' => $request['color'],
             'user_id' => $user_id,
         ]);
 
@@ -64,7 +65,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        if ( $post->personal !== 0) {
+            abort(404);
+        }
+        return view('posts.show', compact('post'));
     }
 
     /**

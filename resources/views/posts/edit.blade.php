@@ -35,7 +35,7 @@
 
                 <div class="mb-3">
                     <label for="color" class="form-label">Изменить цвет!</label>
-                    <input type="color" class="form-control form-control-color" id="color" value="{{ $post->color }}"
+                    <input name='color' type="color" class="form-control form-control-color" id="color" value="{{ $post->color }}"
                         title="Выбрать цвет фона">
                 </div>
 

@@ -17,7 +17,7 @@
         </thead>
         <tbody>
             @foreach ($posts as $post)
-                <tr>
+                <tr style="border-color: {{$post->color}}; border-style: solid; border-width: 4px; ">
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->getShortContent() }}</td>
                     <td>{{ $post->isPersonal() }}</td>

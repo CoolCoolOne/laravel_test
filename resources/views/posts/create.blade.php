@@ -37,7 +37,7 @@
 
                 <div class="mb-3" >
                     <label for="color" class="form-label">Выбрать цвет!</label>
-                    <input type="color" class="form-control form-control-color" id="color" value="#6C757D"
+                    <input name='color' type="color" class="form-control form-control-color" id="color" value="#6C757D"
                         title="Выбрать цвет фона">
                 </div>
 
