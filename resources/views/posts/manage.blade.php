@@ -5,7 +5,7 @@
 @section('content')
 
 
-
+<div style="overflow: auto;">
     <table class="table mt-5 alert-info rounded">
         <thead>
             <tr>
@@ -17,7 +17,7 @@
         </thead>
         <tbody>
             @foreach ($posts as $post)
-                <tr style="border-color: {{$post->color}}; border-style: solid; border-width: 4px; ">
+                <tr style="border-color: {{$post->color}}; border-style: solid; border-width: 4px;">
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->getShortContent() }}</td>
                     <td>{{ $post->isPersonal() }}</td>
@@ -33,7 +33,7 @@
             @endforeach
         </tbody>
     </table>
-
+</div>
 
 
     
