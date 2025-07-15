@@ -44,16 +44,21 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:100',
             'content' => 'required|min:50',
+            'logo' => ['nullable', 'image', 'mimes:jpeg,jpg,png'],
         ]);
 
         $user_id = auth()->user()->id;
 
+        if ($request->hasFile('logo')) {
+            $logo = $request->logo->store('/', 'post_logos');
+        }
 
         Post::create([
             'title' => $request['title'],
             'content' => $request['content'],
             'color' => $request['color'],
             'user_id' => $user_id,
+            'logo' => $logo,
         ]);
 
 

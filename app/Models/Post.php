@@ -23,6 +23,7 @@ class Post extends Model
         'color',
         'personal',
         'user_id',
+        'logo',
     ];
 
      public function user()

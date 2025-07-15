@@ -11,15 +11,20 @@
 
 
                         <h5 class="card-title" >{{ $post->title }}</h5>
-                        <p>
-                            {{$post->color}}
-                        </p>
-                        <p class="card-text">Автор: 
-                            <img src="storage/{{ $post->user->avatar }}" class="card-img-top rounded rounded-circle" style="width: 20%;" alt="ava_{{ $post->user->name }}">
+                        <br>
+
+                        <div>
+                             <img src="/storage/images/post_logos/{{ $post->logo }}" class="rounded" style="width: 40vh; float:left; margin: 5px 10px 5px 0;" alt="ava_{{ $post->user->name }}">
+                            {!! nl2br($post->content) !!}
+                        
+                        </div>
+
+                        <br>
+                        <hr>
+                        <p class="card-text">Автор:    
+                            <img src="/storage/images/avatars/{{ $post->user->avatar }}" class="rounded rounded-circle" style="width: 5%;" alt="ava_{{ $post->user->name }}">
                             {{ $post->user->name }}
                         </p>
-
-                        <div>{{ $post->content }}</div>
 
 
     </div>

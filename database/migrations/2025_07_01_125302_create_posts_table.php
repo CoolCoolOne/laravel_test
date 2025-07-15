@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->mediumText(column: 'content');
             $table->string('color', length: 20)->nullable();
             $table->boolean(column: 'personal')->default('0');
+            $table->string('logo')->nullable();
         });
     }
 

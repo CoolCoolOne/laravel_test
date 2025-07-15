@@ -8,7 +8,7 @@
             <h1 class="mb-5">Создание публикации</h1>
 
 
-            <form action="{{ route('posts.store') }}" method="post">
+            <form enctype="multipart/form-data" action="{{ route('posts.store') }}" method="post">
 
                 @csrf
 
@@ -46,6 +46,17 @@
                     <label class="form-check-label" for="personal">
                         Скрытая (личная) публикация
                     </label>
+                </div>
+
+                <div class="mb-3">
+                    <label for="logo" class="form-label">Загрузите превью [необяз]</label>
+                    <input name='logo' 
+                    class="form-control @error('logo') is-invalid @enderror" 
+                    type="file" id="logo">
+
+                    @error('logo')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
 
