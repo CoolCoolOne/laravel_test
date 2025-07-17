@@ -17,7 +17,7 @@
                     </div>
                     <ul class="list-group list-group-flush ">
                         <li class="list-group-item bg-secondary"><a class="text-info" href="#">Фотографии</a></li>
-                        <li class="list-group-item bg-secondary"><a class="text-info" href="#">Публикации</a></li>
+                        <li class="list-group-item bg-secondary"><a class="text-info" href="{{route('all_posts_one_usr', $user->id)}}">Публикации</a></li>
                         <li class="list-group-item bg-secondary"><a class="text-info" href="#">Чат</a></li>
                     </ul>
                 </div>

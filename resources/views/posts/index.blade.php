@@ -17,7 +17,7 @@
                         <img src="/storage/images/post_logos/{{ $post->logo }}" class="card-img-top" alt="logo_{{$post->logo}}" style="height: 7rem; object-fit: cover;">
                         <hr>
                         <p class="card-text text-white">Автор:
-                            <img src="storage/images/avatars/{{ $post->user->avatar }}" class="card-img-top rounded rounded-circle"
+                            <img src="/storage/images/avatars/{{ $post->user->avatar }}" class="card-img-top rounded rounded-circle"
                                 style="width: 20%;" alt="{{ $post->user->name }}">
                             <br class="text-white">{{ $post->user->name }}
                         </p>

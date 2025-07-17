@@ -11,9 +11,13 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(?int $user_id=null)
     {
-        $posts = Post::latest()->paginate(6); // Получаем посты с пагинацией
+        if ($user_id === null) {
+            $posts = Post::latest()->paginate(6);
+        } else {
+            $posts = Post::latest()->where('user_id', $user_id)->paginate(6);
+        }
         return view('posts.index', compact('posts'));
     }
 
@@ -22,7 +26,7 @@ class PostController extends Controller
         $user_id = auth()->user()->id;
 
 
-        $posts = Post::latest()->where('user_id',$user_id)->paginate(6); // Получаем посты с пагинацией
+        $posts = Post::latest()->where('user_id', $user_id)->paginate(6); // Получаем посты с пагинацией
         return view('posts.manage', compact('posts'));
     }
 
@@ -70,7 +74,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if ( $post->personal !== 0) {
+        if ($post->personal !== 0) {
             abort(404);
         }
         return view('posts.show', compact('post'));
@@ -90,7 +94,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         // обновлять можно только свои посты
-        if ( ! $post->isAuthor()) {
+        if (!$post->isAuthor()) {
             abort(404);
         }
 
@@ -112,7 +116,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->delete(); 
+        $post->delete();
 
         return redirect()->route('posts.manage')->with('success', 'Пост успешно удален!');
     }

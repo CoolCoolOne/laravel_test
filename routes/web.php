@@ -18,7 +18,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get("userlist", [ContentController::class, 'userlist'])->name('userlist');
     Route::get("profile", [ContentController::class, 'profile'])->name('profile');
 
-    Route::get('/posts', [PostController::class, 'index'])->name('all_posts'); // Cписoк всех постов
+    Route::get('/posts', [PostController::class, 'index'])->name('all_posts');
+    Route::get('/posts/{user_id}/this_author', [PostController::class, 'index'])->name('all_posts_one_usr'); // Cписoк всех постов
     Route::get('/posts/{post}/show', [PostController::class, 'show'])->name('one_post');
     Route::get('/posts/manage', [PostController::class, 'manage'])->name('posts.manage'); // Cписoк своих постов для управления
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create'); // Форма создания 

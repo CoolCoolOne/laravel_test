@@ -55,17 +55,21 @@
 
                 </ul>
                 @auth
-                    <a class="text-decoration-none navbar-text bg-success rounded rounded-3 opacity-25"
+                    <a class="text-decoration-none navbar-text bg-success rounded rounded-3 opacity-25" style="background-color: #198754 !important"
                         href="{{ route('profile') }}">
-                        <div class="nav-link text-dark">
-                            <b>{{ auth()->user()->name }}</b>
+                        <div class="nav-link text-dark bg-success rounded rounded-3">
+                            <div><b>{{ auth()->user()->name }}</b>
                             @if (auth()->user()->hasVerifiedEmail())
                                 <img class="rounded-pill" src="/storage/images/avatars/{{ auth()->user()->avatar }}" alt="фото_профиля"
-                                    width="50px">
+                                    width="40px" style="margin-left: 5px">
                             @else
                                 [не подтверждён]
-                            @endif
+                            @endif</div>
+                            
+                            <span>Ваш профиль</span>
                         </div>
+                        
+                        
                     </a>
                 @endauth
             </div>
