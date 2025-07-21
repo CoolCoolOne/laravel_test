@@ -14,7 +14,7 @@
                     
                     <div class="card-body" style="background-color: {{$post->color}}">
                         <h5 class="card-title text-white" style="height: 5rem;">{{ $post->title }}</h5>
-                        <img src="/storage/images/post_logos/{{ $post->logo }}" class="card-img-top" alt="logo_{{$post->logo}}" style="height: 7rem; object-fit: cover;">
+                        <img src="/storage/images/post_logos/comp/{{ $post->logo }}" class="card-img-top" alt="logo_{{$post->logo}}" style="height: 7rem; object-fit: cover;">
                         <hr>
                         <p class="card-text text-white">Автор:
                             <img src="/storage/images/avatars/{{ $post->user->avatar }}" class="card-img-top rounded rounded-circle"

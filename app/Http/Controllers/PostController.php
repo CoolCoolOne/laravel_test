@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(?int $user_id=null)
+    public function index(?int $user_id = null)
     {
         if ($user_id === null) {
             $posts = Post::latest()->paginate(6);
@@ -55,6 +58,18 @@ class PostController extends Controller
 
         if ($request->hasFile('logo')) {
             $logo = $request->logo->store('/', 'post_logos');
+
+            // create image manager with desired driver
+            $manager = new ImageManager(new Driver());
+
+            // read image from file system
+            $image = $manager->read('storage/images/post_logos/'.$logo);
+
+            // resize image proportionally to 300px width
+            $image->scale(width: 100);
+
+            // save modified image in new format 
+            $image->toPng()->save('storage/images/post_logos/comp/'.$logo);
         }
 
         Post::create([
