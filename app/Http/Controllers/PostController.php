@@ -59,17 +59,13 @@ class PostController extends Controller
         if ($request->hasFile('logo')) {
             $logo = $request->logo->store('/', 'post_logos');
 
-            // create image manager with desired driver
+
             $manager = new ImageManager(new Driver());
-
-            // read image from file system
-            $image = $manager->read('storage/images/post_logos/'.$logo);
-
-            // resize image proportionally to 300px width
-            $image->scale(width: 100);
-
-            // save modified image in new format 
-            $image->toPng()->save('storage/images/post_logos/comp/'.$logo);
+            $logo_compressed = $manager->read('storage/images/post_logos/'.$logo);
+            $logo_compressed->scale(width: 200);
+            $logo_compressed->save('storage/images/post_logos/comp/'.$logo);
+        } else {
+            $logo = null;
         }
 
         Post::create([

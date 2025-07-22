@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Str;
 
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
+
 class UserController extends Controller
 {
 
@@ -17,6 +21,37 @@ class UserController extends Controller
     public function create()
     {
         return view("user.create");
+    }
+
+    public function updateform()
+    {
+        return view("user.updateform");
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'max:255'],
+            'avatar' => ['nullable', 'image', 'mimes:jpeg,jpg,png'],
+        ]);
+
+
+        if ($request->hasFile('avatar')) {
+            $avaName = $request->avatar->store('/', 'avatars');
+            $manager = new ImageManager(new Driver());
+            $ava_compressed = $manager->read('storage/images/avatars/' . $avaName);
+            $ava_compressed->cover(300, 300);
+            $ava_compressed->save('storage/images/avatars/comp/' . $avaName);
+        } else {
+            $avaName = 'default_avatar.jpg';
+        }
+
+        $user->update([
+            'name' => $request['name'],
+            'avatar' => $avaName,
+        ]);
+
+        return redirect()->route('profile')->with('success', 'Профиль успешно обновлён!');
     }
 
     public function store(Request $request)
@@ -31,13 +66,15 @@ class UserController extends Controller
 
         if ($request->hasFile('avatar')) {
             $avaName = $request->avatar->store('/', 'avatars');
+            $manager = new ImageManager(new Driver());
+            $ava_compressed = $manager->read('storage/images/avatars/' . $avaName);
+            $ava_compressed->cover(300, 300);
+            $ava_compressed->save('storage/images/avatars/comp/' . $avaName);
         } else {
             $avaName = 'default_avatar.jpg';
         }
 
-        // $user = User::create($request->all());
-
-       $user = User::create([
+        $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => $request['password'],

@@ -9,8 +9,8 @@
 
         @foreach ($users->reverse() as $user)
             @if ($user->hasVerifiedEmail())
-                <div class="card mb-4 bg-secondary" style="width: 18rem;">
-                    <img src="storage/images/avatars/{{ $user->avatar }}" class="card-img-top rounded rounded-3" style="width: 100%; height:18rem" alt="ava_{{ $user->name }}">
+                <div class="card mb-4 bg-secondary" style="width: 10rem;">
+                    <a href="storage/images/avatars/{{ $user->avatar }}"><img src="storage/images/avatars/comp/{{ $user->avatar }}" class="card-img-top rounded rounded-3" style="width: 100%; height:10rem" alt="ava_{{ $user->name }}"></a>
                     <div class="card-body">
                         <h5 class="card-title">{{ $user->name }}</h5>
                         {{-- <p class="card-text">Информация о себе</p> --}}
@@ -25,7 +25,7 @@
         @endforeach
 
     </div>
-
+{{ $users->links('pagination::bootstrap-5') }}
 
 
 @endsection

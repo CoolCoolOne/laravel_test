@@ -17,6 +17,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get("userlist", [ContentController::class, 'userlist'])->name('userlist');
     Route::get("profile", [ContentController::class, 'profile'])->name('profile');
+    Route::get("profile/upd", [UserController::class, 'updateform'])->name('update_userinfo');
+    Route::post("profile/upd", [UserController::class, 'update'])->name('update_userinfo_post');
 
     Route::get('/posts', [PostController::class, 'index'])->name('all_posts');
     Route::get('/posts/{user_id}/this_author', [PostController::class, 'index'])->name('all_posts_one_usr'); // Cписoк всех постов

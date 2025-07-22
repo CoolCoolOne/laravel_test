@@ -11,9 +11,7 @@ class ContentController extends Controller
 
     public function userlist()
     {
-        $users = User::all("id","name","email_verified_at","avatar" );
-
-        // dd($users);
+        $users = User::paginate(6,["id", "name", "email_verified_at", "avatar"]);
         return view('content.userlist', compact('users'));
 
     }

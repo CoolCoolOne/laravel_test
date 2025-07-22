@@ -60,7 +60,7 @@
                         <div class="nav-link text-dark bg-success rounded rounded-3">
                             <div><b>{{ auth()->user()->name }}</b>
                             @if (auth()->user()->hasVerifiedEmail())
-                                <img class="rounded-pill" src="/storage/images/avatars/{{ auth()->user()->avatar }}" alt="фото_профиля"
+                                <img class="rounded-pill" src="/storage/images/avatars/comp/{{ auth()->user()->avatar }}" alt="фото_профиля"
                                     width="40px" style="margin-left: 5px">
                             @else
                                 [не подтверждён]
