@@ -53,4 +53,8 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     {
         return $this->hasMany(Post::class);
     }
+
+    public function isOwner(int $id) {
+        return $id === auth()->user()->id;
+    }
 }

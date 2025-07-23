@@ -8,9 +8,11 @@
             <h1 class="mb-5">Редактировать профиль</h1>
 
 
-            <form enctype="multipart/form-data" action="{{ route('update_userinfo_post') }}" method="post">
+            <form enctype="multipart/form-data" action="{{ route('profile.update') }}" method="post">
 
                 @csrf
+
+                <input type="hidden" id="id" name="id" value="{{ auth()->user()->id }}" />
 
 
                 <div class="mb-3">
@@ -25,7 +27,7 @@
 
                 <div class="mb-3">
                     <label for="avatar" class="form-label">Загрузите новый аватар [вместо <a style="color:white" href="/storage/images/avatars/{{ auth()->user()->avatar }}">старого</a>]</label>
-                    <input name='avatar' value="{{ auth()->user()->avatar }}" 
+                    <input name='avatar' 
                     class="form-control @error('avatar') is-invalid @enderror" 
                     type="file" id="avatar">
 

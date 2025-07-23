@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
-
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -23,13 +23,21 @@ class UserController extends Controller
         return view("user.create");
     }
 
-    public function updateform()
+    public function edit()
     {
-        return view("user.updateform");
+        return view("user.edit");
     }
 
     public function update(Request $request)
     {
+
+        $user = User::where('id', '=', $request->id)->first();
+        // обновлять можно только свои посты
+        if (!$user->isOwner($request->id)) {
+            abort(404);
+        }
+
+
         $request->validate([
             'name' => ['required', 'max:255'],
             'avatar' => ['nullable', 'image', 'mimes:jpeg,jpg,png'],
@@ -42,14 +50,22 @@ class UserController extends Controller
             $ava_compressed = $manager->read('storage/images/avatars/' . $avaName);
             $ava_compressed->cover(300, 300);
             $ava_compressed->save('storage/images/avatars/comp/' . $avaName);
-        } else {
-            $avaName = 'default_avatar.jpg';
-        }
 
-        $user->update([
-            'name' => $request['name'],
-            'avatar' => $avaName,
-        ]);
+            Storage::disk('avatars')->delete($user->avatar);
+            Storage::disk('avatars')->delete('comp/'.$user->avatar);
+
+            $user->update([
+                'name' => $request['name'],
+                'avatar' => $avaName,
+            ]);
+
+
+
+        } else {
+            $user->update([
+                'name' => $request['name'],
+            ]);
+        }
 
         return redirect()->route('profile')->with('success', 'Профиль успешно обновлён!');
     }
