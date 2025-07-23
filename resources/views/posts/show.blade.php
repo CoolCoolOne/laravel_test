@@ -22,7 +22,7 @@
                         <br>
                         <hr>
                         <p class="card-text">Автор:    
-                            <img src="/storage/images/avatars/{{ $post->user->avatar }}" class="rounded rounded-circle" style="width: 5%;" alt="ava_{{ $post->user->name }}">
+                            <img src="/storage/images/avatars/comp/{{ $post->user->avatar }}" class="rounded rounded-circle" style="width: 5%;" alt="ava_{{ $post->user->name }}">
                             {{ $post->user->name }}
                         </p>
 
