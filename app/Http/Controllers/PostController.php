@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
-
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -61,9 +61,9 @@ class PostController extends Controller
 
 
             $manager = new ImageManager(new Driver());
-            $logo_compressed = $manager->read('storage/images/post_logos/'.$logo);
+            $logo_compressed = $manager->read('storage/images/post_logos/' . $logo);
             $logo_compressed->scale(width: 200);
-            $logo_compressed->save('storage/images/post_logos/comp/'.$logo);
+            $logo_compressed->save('storage/images/post_logos/comp/' . $logo);
         } else {
             $logo = null;
         }
@@ -127,6 +127,11 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->logo !== null) {
+            Storage::disk('post_logos')->delete($post->logo);
+            Storage::disk('post_logos')->delete('comp/' . $post->logo);
+        }
+
         $post->delete();
 
         return redirect()->route('posts.manage')->with('success', 'Пост успешно удален!');
