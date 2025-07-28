@@ -13,7 +13,7 @@
                 @csrf
 
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email адрес</label>
+                    <label for="email" class="form-label">Email адрес (если у вас почта не yandex, обратитесь к админу)</label>
                     <input name='email' type="email" class="form-control @error('email') is-invalid @enderror"
                         id="email" placeholder="email" value="{{ old('email') }}">
 
@@ -46,6 +46,12 @@
                     <label for="password_confirmation" class="form-label">Повторите пароль</label>
                     <input name='password_confirmation' type="password" class="form-control" id="password_confirmation"
                         placeholder="пароль повторно">
+                </div>
+
+                <div class="mb-3">
+                    <label for="adminCode" class="form-label">Пригласительный код (ник Алексея в тг)</label>
+                    <input name='adminCode' type="adminCode" class="form-control"
+                        id="adminCode" placeholder="код">
                 </div>
 
                 <div class="mb-3">

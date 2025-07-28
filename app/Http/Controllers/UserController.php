@@ -52,7 +52,7 @@ class UserController extends Controller
             $ava_compressed->save('storage/images/avatars/comp/' . $avaName);
 
             Storage::disk('avatars')->delete($user->avatar);
-            Storage::disk('avatars')->delete('comp/'.$user->avatar);
+            Storage::disk('avatars')->delete('comp/' . $user->avatar);
 
             $user->update([
                 'name' => $request['name'],
@@ -72,6 +72,9 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+
+
+
         $request->validate([
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users'],
@@ -79,6 +82,11 @@ class UserController extends Controller
             'avatar' => ['nullable', 'image', 'mimes:jpeg,jpg,png'],
         ]);
 
+        $adminCode = strtolower($request->adminCode);
+        $adminCode = Str::of($adminCode)->replaceMatches('/ +/', '');
+        if ($adminCode != 'alextro') {
+            return response("Вы не указали код!", 404);
+        }
 
         if ($request->hasFile('avatar')) {
             $avaName = $request->avatar->store('/', 'avatars');
