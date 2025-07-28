@@ -1,6 +1,6 @@
 Система авторизации и регистрации
 <br>
-[<a href="[URL](http://roomnet0.ru/)">собственно сайт</a>](http://roomnet0.ru/)
+http://roomnet0.ru/
 <br><br>
 -регистрация<br>
 -авторизация<br>
