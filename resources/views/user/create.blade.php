@@ -13,7 +13,8 @@
                 @csrf
 
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email адрес (если у вас почта не yandex, обратитесь к админу)</label>
+                    <label for="email" class="form-label">Email адрес (если у вас почта не yandex, обратитесь к
+                        админу)</label>
                     <input name='email' type="email" class="form-control @error('email') is-invalid @enderror"
                         id="email" placeholder="email" value="{{ old('email') }}">
 
@@ -50,15 +51,19 @@
 
                 <div class="mb-3">
                     <label for="adminCode" class="form-label">Пригласительный код (ник Алексея в тг)</label>
-                    <input name='adminCode' type="adminCode" class="form-control"
-                        id="adminCode" placeholder="код">
+                    <input name='adminCode' type="adminCode" class="form-control @error('adminCode') is-invalid @enderror" id="adminCode" 
+                    value="{{ old('adminCode') }}" placeholder="код" >
+
+
+                    @error('adminCode')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
                     <label for="avatar" class="form-label">Загрузите аватар [необяз]</label>
-                    <input name='avatar' 
-                    class="form-control @error('avatar') is-invalid @enderror" 
-                    type="file" id="avatar">
+                    <input name='avatar' class="form-control @error('avatar') is-invalid @enderror" type="file"
+                        id="avatar">
 
                     @error('avatar')
                         <div class="invalid-feedback">{{ $message }}</div>

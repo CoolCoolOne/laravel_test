@@ -73,20 +73,25 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-
+        // $request->adminCode = strtolower($request->adminCode);
+        // $request->adminCode = Str::of($request->adminCode)->replaceMatches('/ +/', '');
 
         $request->validate([
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed'],
             'avatar' => ['nullable', 'image', 'mimes:jpeg,jpg,png'],
+            'adminCode' => ['required', 'in:alex tro,alextro,aleksey_troitsky,@Aleksey_Troitsky,Aleksey_Troitsky,@aleksey_troitsky,AlexTro,Alex Tro']
+        ],[
+            'name.required' => 'Без имени - никак',
+            'email.required' => 'Без почты - никак',
+            'email.email' => 'Это видать не почта...',
+            'email.unique' => 'Такая почта уже занята!',
+            'password.required' => 'Вы забыли пароль',
+            'password.confirmed' => 'Пароли не совпадают.',
+            'adminCode.required' => 'Вы не ввели пригласительный код',
+            'adminCode.in' => 'Неверный пригласительный код! Уточните у админа.',
         ]);
-
-        $adminCode = strtolower($request->adminCode);
-        $adminCode = Str::of($adminCode)->replaceMatches('/ +/', '');
-        if ($adminCode != 'alextro') {
-            return response("Вы не указали код!", 404);
-        }
 
         if ($request->hasFile('avatar')) {
             $avaName = $request->avatar->store('/', 'avatars');
@@ -183,4 +188,7 @@ class UserController extends Controller
     }
 
 
+
 }
+
+
