@@ -6,30 +6,35 @@
 
 
 
-    <div class=" mt-5 rounded p-2" style="background-color: {{$post->color}}">
+    <div class=" mt-5 rounded p-2" style="background-color: {{ $post->color }}">
 
 
 
-                        <h5 class="card-title" >{{ $post->title }}</h5>
-                        <br>
+        <h5 class="card-title">{{ $post->title }}</h5>
+        <br>
 
-                        <div>
-                             <img src="/storage/images/post_logos/{{ $post->logo }}" class="rounded" style="width: 40vh; float:left; margin: 5px 10px 5px 0;" alt="ava_{{ $post->user->name }}">
-                            {!! nl2br($post->content) !!}
-                        
-                        </div>
+        <div>
+            @if (is_null($post->logo))
+            @else
+                <img src="/storage/images/post_logos/{{ $post->logo }}" class="rounded"
+                    style="width: 40vh; float:left; margin: 5px 10px 5px 0;" alt="logo_{{ $post->logo }}">
+            @endif        
+                {!! nl2br($post->content) !!}
 
-                        <br>
-                        <hr>
-                        <p class="card-text">Автор:    
-                            <img src="/storage/images/avatars/comp/{{ $post->user->avatar }}" class="rounded rounded-circle" style="width: 5%;" alt="ava_{{ $post->user->name }}">
-                            {{ $post->user->name }}
-                        </p>
+        </div>
+
+        <br>
+        <hr>
+        <p class="card-text">Автор:
+            <img src="/storage/images/avatars/comp/{{ $post->user->avatar }}" class="rounded rounded-circle"
+                style="width: 5%;" alt="ava_{{ $post->user->name }}">
+            {{ $post->user->name }}
+        </p>
 
 
     </div>
 
-    
+
 
 
 
