@@ -10,14 +10,14 @@
 
 
 
-        <h5 class="card-title">{{ $post->title }}</h5>
+        <h5 class="card-title"  style="text-align: center;">{{ $post->title }}</h5>
         <br>
 
         <div>
             @if (is_null($post->logo))
             @else
                 <img src="/storage/images/post_logos/{{ $post->logo }}" class="rounded"
-                    style="width: 40vh; float:left; margin: 5px 10px 5px 0;" alt="logo_{{ $post->logo }}">
+                    style="width: 40vh; display: block; margin: 0 auto;" alt="logo_{{ $post->logo }}"><br>
             @endif        
                 {!! nl2br($post->content) !!}
 

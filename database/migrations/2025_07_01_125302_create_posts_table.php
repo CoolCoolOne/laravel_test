@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string(column: 'slug')->nullable();
             $table->mediumText(column: 'content');
             $table->string('color', length: 20)->nullable();
-            $table->boolean(column: 'personal')->default('0');
+            $table->boolean(column: 'personal')->default(false);
             $table->string('logo')->nullable();
         });
     }

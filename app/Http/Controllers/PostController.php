@@ -17,9 +17,9 @@ class PostController extends Controller
     public function index(?int $user_id = null)
     {
         if ($user_id === null) {
-            $posts = Post::latest()->paginate(6);
+            $posts = Post::latest()->where('personal', false)->paginate(6);
         } else {
-            $posts = Post::latest()->where('user_id', $user_id)->paginate(6);
+            $posts = Post::latest()->where('user_id', $user_id)->where('personal', false)->paginate(6);
         }
         return view('posts.index', compact('posts'));
     }
@@ -46,7 +46,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request['personal'] = $request->has('personal');
 
         $request->validate([
             'title' => 'required|max:100',
@@ -74,6 +74,7 @@ class PostController extends Controller
             'color' => $request['color'],
             'user_id' => $user_id,
             'logo' => $logo,
+            'personal' => $request['personal'],
         ]);
 
 
@@ -85,7 +86,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if ($post->personal !== 0) {
+        if ($post->personal != false) {
             abort(404);
         }
         return view('posts.show', compact('post'));
@@ -109,6 +110,7 @@ class PostController extends Controller
             abort(404);
         }
 
+        $request['personal'] = $request->has('personal');
 
         $request->validate([
             'title' => 'required|max:100',

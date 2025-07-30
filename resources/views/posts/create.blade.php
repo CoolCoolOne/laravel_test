@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="mb-3 form-check">
-                    <input name="personal" class="form-check-input" type="checkbox" id="personal">
+                    <input name="personal" class="form-check-input" type="checkbox" id="personal" value="0">
                     <label class="form-check-label" for="personal">
                         Скрытая (личная) публикация
                     </label>
